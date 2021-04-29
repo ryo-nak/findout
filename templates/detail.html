@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <div class="alert alert-secondary" role="alert">
+    <h3>detail page</h3>
+{% endblock header %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+
+  <div class="alert alert-info" role="alert">
+   <p>タイトル: {{objects.title}} </p>
+   <p>投稿者: {{ objects.author }}</p>
+   <p><img src="{{ objects.sns_image.url }}" width=400></p>
+   <p>{{ objects.content }}</p>
+   <a href="{% url 'good' objects.pk %}" class="btn btn-primary   role="button" aria-disabled="true">いいねする</a>
+   <a href="#" class="btn btn-primary   role="button" aria-disabled="true">既読にする</a>
+  </div>
+  <a href="{% url 'logout' %}" >logout</a>
+</div>
+{% else %}
+please login
+{% endif %}
+{% endblock content %}
